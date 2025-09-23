@@ -2,8 +2,6 @@
 
 **Extending OWASP pytm for Multi-Step Attack Detection with Sequence-Labeled Data Flow Diagrams**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
 ---
 
 ## Overview
