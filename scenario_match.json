@@ -1,0 +1,26 @@
+{
+    "scenario id" : "TOCTOU1",
+    "scenario name" : "Time-Od_check to Time-Of-Use-Example",
+    "steps" : {
+        "step_1" : {
+            "source": {
+                "source_name" : "Database Reader",
+                "source_elem_type" : "Process",
+                "source_func_type" : "Read"
+            },
+            "sink" : {
+                "sink_name" : "User Databse",
+                "sink_elem_type" : "DataStore",
+                "sink_func_type" : "-"
+            }
+        },
+        "step_2" : {
+            "source": {
+                "source_name" : "User Databse",
+                "source_elem_type" : "DataStore",
+                "source_func_type" : "-"
+            } ...
+        }
+        ...
+    }
+}

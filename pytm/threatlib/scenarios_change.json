@@ -1,0 +1,19 @@
+[  
+    {
+        "id" : "OCPOM1",
+        "name": "On-chain Price Oracle Manipulation",
+        "phases": [
+            {"src": ["Peer Node", "Process"], "dst": ["Asset Exchange", "Process"], "order":1},
+            {"src": ["Asset Exchange", "Process"], "dst": ["Peer Node", "Process"], "order":2},
+            {"src": ["Peer Node", "Process"],"dst": ["On-chain Price Oracle Contract", "Process"], "order":3 },
+            {"src": ["On-chain Price Oracle Contract","Process"],"dst": ["Asset Exchange","Process"], "order":4},
+            {"src": ["Asset Exchange","Process"],"dst": ["On-chain Price Oracle Contract","Process"], "order":5},
+            {"src": ["On-chain Price Oracle Contract","Process"],"dst": ["Peer Node","Process"], "order":6},            
+            {"src": ["Peer Node", "Process"], "dst": ["Collateral Provision", "Process"], "order":7},
+            {"src": ["Collateral Provision", "Process"], "dst": ["On-chain Price Oracle Contract", "Process"], "order":8},
+            {"src": ["On-chain Price Oracle Contract", "Process"], "dst": ["Collateral Provision", "Process"], "order":9},
+            {"src": ["Collateral Provision", "Process"], "dst": ["Peer Node", "Process"], "order":10}
+        ]
+        
+    }
+]
