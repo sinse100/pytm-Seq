@@ -1,36 +1,5 @@
 [  
     {
-        "id" : "OCPOM1",
-        "name": "On-chain Price Oracle Manipulation",
-        "phase_except_last": [
-            {"src": ["Peer Node", "Process"], "dst": ["Asset Exchange", "Process"]},
-            {"src": ["Asset Exchange", "Process"], "dst": ["Peer Node", "Process"]},
-            {"src": ["Peer Node", "Process"],"dst": ["On-chain Price Oracle Contract", "Process"] },
-            {"src": ["On-chain Price Oracle Contract","Process"],"dst": ["Asset Exchange","Process"]},
-            {"src": ["Asset Exchange","Process"],"dst": ["On-chain Price Oracle Contract","Process"]},
-            {"src": ["On-chain Price Oracle Contract","Process"],"dst": ["Peer Node","Process"]},            
-            {"src": ["Peer Node", "Process"], "dst": ["Collateral Provision", "Process"]},
-            {"src": ["Collateral Provision", "Process"], "dst": ["On-chain Price Oracle Contract", "Process"]},
-            {"src": ["On-chain Price Oracle Contract", "Process"], "dst": ["Collateral Provision", "Process"]}
-        ],
-        "phase_last":[{"src": ["Collateral Provision", "Process"], "dst": ["Peer Node", "Process"]}]
-    }
-]
-
-
-[  
-    {
-        "id" : "OCPOM1",
-        "name": "On-chain Price Oracle Manipulation-example",
-        "phase_except_last": [
-            {"src": ["-", "ExternalEntity"], "dst": ["Exchange", "Process"]},
-            {"src": ["Exchange","Process"],"dst": ["Oracle","Process"]},
-            {"src": ["Oracle","Process"],"dst": ["CollateralLoan","Process"]},            
-        ]
-        "phase_last":[{"src": ["Collateral Loan", "Process"], "dst": ["-", "ExternalEntity"]}]
-    },
-[
-    {
         "id" : "TOCTOU1",
         "name": "Time-Of-Check to Time-Of-Use-example",
         "phase_except_last": [
@@ -39,6 +8,62 @@
             {"src": ["Write","DataStore"],"dst": ["-","DataStore"]},       
         ]
         "phase_last":[{"src": ["-","DataStore"],"dst": ["Read","Process"]}]
+    },
+    {
+        "id" : "FL_OCPOM_1",
+        "name": "On-chain Price Oracle Manipulation-type-1",
+        "phase_except_last": [
+            {"src": ["Peer Node", "Process"], "dst": ["Exchange", "Process"]},
+            {"src": ["Exchange", "Process"], "dst": ["Oracle", "Process"]},
+            {"src": ["Oracle", "Process"],"dst": ["Collateral Loan", "Process"] }
+        ],
+        "phase_last":[{"src": ["Collateral Loan","Process"],"dst": ["Peer Node","Process"]}]
+    },
+    {
+        "id" : "FL_OCPOM_2",
+        "name": "On-chain Price Oracle Manipulation-type-2",
+        "phase_except_last": [
+            {"src": ["Peer Node", "Process"], "dst": ["Flash Loan", "Process"]},
+            {"src": ["Flash Loan", "Process"], "dst": ["Peer Node", "Process"]},
+            {"src": ["Peer Node", "Process"],"dst": ["Liquidity Staking", "Process"] },
+            {"src": ["Liquidity Staking", "Process"],"dst": ["Oracle", "Process"] },
+            {"src": ["Oracle", "Process"],"dst": ["Collateral Loan", "Process"] }
+        ],
+        "phase_last":[{"src": ["Collateral Loan","Process"],"dst": ["Peer Node","Process"]}]
+    },
+    {
+        "id" : "FL_OCPOM_3",
+        "name": "On-chain Price Oracle Manipulation-type-3",
+        "phase_except_last": [
+            {"src": ["Peer Node", "Process"], "dst": ["Flash Loan", "Process"]},
+            {"src": ["Flash Loan", "Process"], "dst": ["Peer Node", "Process"]},
+            {"src": ["Peer Node", "Process"],"dst": ["Governance", "Process"] }
+        ],
+        "phase_last":[{"src": ["Governance","Process"],"dst": ["Peer Node","Process"]}]
+    },
+    {
+        "id" : "FL_OCPOM_4",
+        "name": "On-chain Price Oracle Manipulation-type-4",
+        "phase_except_last": [
+            {"src": ["Peer Node", "Process"], "dst": ["Flash Loan", "Process"]},
+            {"src": ["Flash Loan", "Process"], "dst": ["Peer Node", "Process"]},
+            {"src": ["Peer Node", "Process"],"dst": ["Exchange", "Process"] },
+            {"src": ["Exchange", "Process"],"dst": ["Oracle", "Process"] },
+            {"src": ["Oracle", "Process"],"dst": ["Yield Aggregator", "Process"] }
+        ],
+        "phase_last":[{"src": ["Yield Aggregator","Process"],"dst": ["Peer Node","Process"]}]
+    },
+    {
+        "id" : "FL_OCPOM_5",
+        "name": "On-chain Price Oracle Manipulation-type-5",
+        "phase_except_last": [
+            {"src": ["Peer Node", "Process"], "dst": ["Flash Loan", "Process"]},
+            {"src": ["Flash Loan", "Process"], "dst": ["Peer Node", "Process"]},
+            {"src": ["Peer Node", "Process"],"dst": ["Exchange", "Process"] },
+            {"src": ["Exchange", "Process"],"dst": ["Oracle", "Process"] },
+            {"src": ["Oracle", "Process"],"dst": ["Synthesis", "Process"] }
+        ],
+        "phase_last":[{"src": ["Synthesis","Process"],"dst": ["Peer Node","Process"]}]
     }
 ]
 
