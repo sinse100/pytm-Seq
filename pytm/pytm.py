@@ -924,7 +924,7 @@ with same properties, except name and notes""",
             if mode is not None:    
                 tp_engine = ThreatPathEngine(self,"./pytm/threatlib/scenario.json")
                 tp_engine.check_type_of_asset()
-                result = tp_engine.find_all()
+                result = tp_engine.find_all_test()
                 tp_engine.result2json(result)
                 
         self.findings = findings
