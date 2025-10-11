@@ -70,6 +70,7 @@ The core functionality of multi-step attack detection is controlled by a single 
 The mode parameter on the TM object's process call indicates whether to enable the multi-step detection engine.
 
 + 1. Defining the System Model and Execution (sample_dfd.py) : Define your system's DFD in a Python file. Ensure to use the order and function_type attributes for data flows and processes that define sequence and function type, respectively.
+  
 ```from pytm.pytm import TM
 # Initialize the Threat Model object
 tm = TM("my test tm")
@@ -80,8 +81,11 @@ tm = TM("my test tm")
 tm.process(mode=1)```
 
 + 2. After writing your DFD code (e.g., in sample_dfd.py), execute the following commands in your bash environment to generate the outputs. Generate Multi-step Threat Identification Report (tm_report.html)
-++ This command executes the DFD code, generates the report, and converts the markdown output to a final HTML document.
+
+This command executes the DFD code, generates the report, and converts the markdown output to a final HTML document.
+
 ```./sample_dfd.py --report docs/basic_template.md | pandoc -f markdown -t html > tm/tm_report.html```
-++ This command generates the DFD in dot format and uses the dot tool (Graphviz) to convert it into a static PNG image.
+
+ This command generates the DFD in dot format and uses the dot tool (Graphviz) to convert it into a static PNG image.
 
 ```./sample_dfd.py --dfd | dot -Tpng -o sample_dfd.png```
