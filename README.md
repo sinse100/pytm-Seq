@@ -1,7 +1,7 @@
 # pytm-Seq
 
 **Extending OWASP pytm for Multi-Step Attack Detection with Sequence-Labeled Data Flow Diagrams**
-
+![로고](./new_logo.png)
 ---
 
 ## Overview
