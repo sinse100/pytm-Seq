@@ -85,5 +85,7 @@ tm.process(mode=1)```
 + 2. After writing your DFD code (e.g., in sample_dfd.py), execute the following commands in your bash environment to generate the outputs. Generate Multi-step Threat Identification Report (tm_report.html)
 This command executes the DFD code, generates the report, and converts the markdown output to a final HTML document.
 ```./sample_dfd.py --report docs/basic_template.md | pandoc -f markdown -t html > tm/tm_report.html```
+
 This command generates the DFD in dot format and uses the dot tool (Graphviz) to convert it into a static PNG image.
+
 ```./sample_dfd.py --dfd | dot -Tpng -o sample_dfd.png```
