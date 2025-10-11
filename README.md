@@ -71,14 +71,16 @@ The mode parameter on the TM object's process call indicates whether to enable t
 
 + 1. Defining the System Model and Execution (sample_dfd.py) : Define your system's DFD in a Python file. Ensure to use the order and function_type attributes for data flows and processes that define sequence and function type, respectively.
   
-```from pytm.pytm import TM
+```
+from pytm.pytm import TM
 # Initialize the Threat Model object
 tm = TM("my test tm")
 ## ... (DFD Declaration Code here)
 ## Example: process.function_type = "Write", data_flow.order = 1
 # Start Threat and Multi-step Threat Identification
 # Setting mode=1 activates the multi-step attack detection engine.
-tm.process(mode=1)```
+tm.process(mode=1)
+```
 
 + 2. After writing your DFD code (e.g., in sample_dfd.py), execute the following commands in your bash environment to generate the outputs. Generate Multi-step Threat Identification Report (tm_report.html)
 
