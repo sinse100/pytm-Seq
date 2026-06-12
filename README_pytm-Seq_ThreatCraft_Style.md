@@ -165,9 +165,12 @@ pytm-Seq/
 │   │   └── report_util.html  
 │   └── basic_template.md    ## markdown template for threat detection report
 │
-├── examples/
-│   ├── sample_dfd.py
-│ ├── flash_loan.py │ ├── oracle_manipulation.py │ └── toctou.py │ ├── case_study/ │ ├── DFD_case_study.png │ ├── report_case_study.html │ └── attack_path.json │ └── Dockerfile
+├── casestudy
+│   ├── ICS               ## artifact for ICS case study 
+│   └── smart_contract    ## artifact for Smartr Contract case study
+└── Dockerfile            ## Dockerfile to build pytm-Seq
+
+eport_case_study.html │ └── attack_path.json │ └── Dockerfile
 ```
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
