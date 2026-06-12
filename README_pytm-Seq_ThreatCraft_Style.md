@@ -85,16 +85,14 @@ The first stage extends the OWASP ODTM DFD metamodel with additional information
 
 </p>
 
-📌 DataFlow Order
-Represents the sequence of data transfers.
-📌 Process Function Type
-Represents the semantic role of a process.
-Examples:
-Read
-Write
-Flash Loan
-Asset Exchange
-Price Oracle
++ 📌 DataFlow Order Represents the sequence of data transfers.
++ 📌 Process Function Type Represents the semantic role of a process.
+  + Examples:
+    + Read
+    + Write
+    + Flash Loan
+    + Asset Exchange
+    + Price Oracle
 
 → Output: Extended DFD Metamodel
 
@@ -107,8 +105,8 @@ Price Oracle
 Real-world attack cases, vulnerability databases, and threat intelligence sources are analysed to derive reusable attack patterns.
 </p>
 
-📌 MITRE ATT&CK
-📌 Real-world attack incidents Post-Mortem Report
++ 📌 MITRE ATT&CK
++ 📌 Real-world attack incidents Post-Mortem Report
 
 → Output: JSON-based Multi-Step Threat Patterns
   
@@ -121,10 +119,10 @@ The attack identification engine traverses the DFD graph while enforcing order c
 
 </p>
 
-📌 Starting Node Identification
-📌 Ordered Graph Traversal
-📌 Sequence Verification
-📌 Threat Pattern Matching
++ 📌 Starting Node Identification
++ 📌 Ordered Graph Traversal
++ 📌 Sequence Verification
++ 📌 Threat Pattern Matching
 
 → Output: Attack Path in DFD
 
@@ -137,9 +135,9 @@ The attack identification engine traverses the DFD graph while enforcing order c
 Detected attack paths are automatically transformed into threat analysis reports.
 </p>
 
-📌 Multi-Step Threat Report
-📌 HTML Output
-📌 Attack Path Summary
++ 📌 Multi-Step Threat Report
++ 📌 HTML Output
++ 📌 Attack Path Summary
 
 → Output: Threat Analysis Report
 
@@ -149,88 +147,27 @@ Detected attack paths are automatically transformed into threat analysis reports
 <h2 id="project-files-description"> :file_folder: Project Files Description</h2>
 
 ```bash
-ThreatCraft/
-├── asset/                          # Static assets (figures, logo, references)
-│   ├── logo.png                    # Project logo used in README/UI
-│   ├── WorkFlow-1.png              # System architecture diagram (paper figure)
-│   └── UKC_document.pdf            # Unified Kill Chain reference document
+pytm-Seq/
 │
-├── code/                           # Core implementation directory
-│   │
-│   ├── frontend/                   # GUI + orchestration layer
-│       ├── tool_attack_paths.py           # main entry point (GUI launcher)
-│       ├── automotive/                    # automotive Domain frontend
-│           ├── tool_attack_paths_automotive.py         # Automotive entry point (GUI launcher)
-│           ├── tool_threat_mapper_automotive.py        # Automotive Middleware between GUI and backend
-│           ├── hierarchy_data_automotive.json          # Automotive CVE–CWE–EMB3D mapping dataset
-│       ├── ics/                           # ics Domain frontend
-│           ├── tool_attack_paths_ics.py                # ics entry point (GUI launcher)
-│           ├── tool_threat_mapper_ics.py               # ics Middleware between GUI and backend
-│           ├── hierarchy_data_ics.json                 # ics CVE–CWE–EMB3D mapping dataset
-│       ├── enterprise/                    # enterprise Domain frontend
-│           ├── tool_attack_paths_enterprise.py         # enterprise entry point (GUI launcher)
-│           ├── tool_threat_mapper_enterprise.py        # enterprise Middleware between GUI and backend
-│           ├── hierarchy_data_enterprise.json          # enterprise CVE–CWE–EMB3D mapping dataset
-│   │
-│   └── backend/                    # Threat reasoning & attack graph engine
-│       ├── parse_attack_graph_automotive.py       # automotive attack scenario generator
-│       ├── parse_attack_graph_ics.py              # ics attack scenario generator
-│       ├── parse_attack_graph_enterprise.py       # enterprise attack scenario generator
-│       │
-│       └── threat_library/         # Structured threat intelligence database
-│           ├── impact_feasability_map.json        # Risk scoring model (severity × feasibility)
-│           ├── automotive/                        # automotive json
-│               ├── asset_to_threats_automotive.json
-│               │   # Maps assets → applicable threats & tactics
-│               │
-│               ├── attack_vector_feasibility_automotive.json
-│               │   # Threat metadata (tactic, feasibility, attack vector)
-│               │
-│               ├── dependency_automotive.json
-│               │   # Asset/threat dependency constraints for attack chaining
-│               │
-│               ├── impact_map_automotive.json
-│               │   # SFOP impact model (Safety / Financial / Operational / Privacy)
-│               │
-│               └── threat_to_tactic_automotive.json
-│                   # Threat → MITRE ATT&CK tactic mapping & ordering logic
-│           ├── ics/                              # ics json
-│               ├── asset_to_threats_ics.json
-│               │   # Maps assets → applicable threats & tactics
-│               │
-│               ├── attack_vector_feasibility_ics.json
-│               │   # Threat metadata (tactic, feasibility, attack vector)
-│               │
-│               ├── dependency_ics.json
-│               │   # Asset/threat dependency constraints for attack chaining
-│               │
-│               ├── impact_map_ics.json
-│               │   # SFOP impact model (Safety / Financial / Operational / Privacy)
-│               │
-│               └── threat_to_tactic_ics.json
-│                   # Threat → MITRE ATT&CK tactic mapping & ordering logic
-│           ├── enterprise/                        # enterprise json
-│               ├── asset_to_threats_enterprise.json
-│               │   # Maps assets → applicable threats & tactics
-│               │
-│               ├── attack_vector_feasibility_enterprise.json
-│               │   # Threat metadata (tactic, feasibility, attack vector)
-│               │
-│               ├── dependency_enterprise.json
-│               │   # Asset/threat dependency constraints for attack chaining
-│               │
-│               ├── impact_map_enterprise.json
-│               │   # SFOP impact model (Safety / Financial / Operational / Privacy)
-│               │
-│               └── threat_to_tactic_enterprise.json
-│                   # Threat → MITRE ATT&CK tactic mapping & ordering logic
-
-└── example/
-        ├── Automotive_DFD.tm7         # Example DFD
-        ├── ICS_DFD_B.tm7              # Example DFD
-        ├── Enterprise_DFD.tm7         # Example DFD
-        ├── _ag_tmp_184849195185.html  # Output Report in FTML format
-        └── _ag_tmp_184849195185.pdf   # Output Report in PDF format
+├── pytm/          ##  source code for pytm-Seq
+|   ├── 。。。
+|   ├── threatlib/    
+│   │   ├── threats.json     ## threat pattern for static threat
+│   │   └── scenarios.json   ## threat pattern for multi-step threat
+│   ├── pytm.py              ## pytm-Seq core backend engine
+│   ├── extensions_mod.py    ## core extension for pytm-Seq (code for sequential analysis)
+│   └── templates/           ## template for Threat Detection Report
+│
+├── docs/                    ## template for threat detection report
+│   ├── ...
+│   ├── pytm                 ## html template for threat detection report 
+│   │   ├── index.html    
+│   │   └── report_util.html  
+│   └── basic_template.md    ## markdown template for threat detection report
+│
+├── examples/
+│   ├── sample_dfd.py
+│ ├── flash_loan.py │ ├── oracle_manipulation.py │ └── toctou.py │ ├── case_study/ │ ├── DFD_case_study.png │ ├── report_case_study.html │ └── attack_path.json │ └── Dockerfile
 ```
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
