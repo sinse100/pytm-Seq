@@ -229,7 +229,7 @@ This command executes the DFD code, generates the report, and converts the markd
 📄 Publication
 Pytm-Seq is a tool that implements the methodology proposed in the following paper, which was presented at **ICISC'2025** (Information Security and Cryptology):
 
-[Revealing the Chain with pytm-Seq: Approach for Multi-step Threat Detection](https://link.springer.com/chapter/10.1007/978-981-95-8034-7_14](https://doi.org/10.1007/978-981-95-8034-7_14)
+[Revealing the Chain with pytm-Seq: Approach for Multi-step Threat Detection](https://doi.org/10.1007/978-981-95-8034-7_14)
 Baek, Geunwoo, Jiwon Kwak, and Seungjoo Kim.
 International Conference on Information Security and Cryptology. Singapore: Springer Nature Singapore, 2025.
 
