@@ -76,80 +76,72 @@ With these extensions, pytm-Seq can automatically detect attacks that exploit sp
 
 ---
 
-### 🔁 1. Rule-Based Engine Layer
+### 🔁 1. DFD Metamodel Extension Layer
 
 <p align="justify">
 
-The overall architecture shown in Figure above is organized as a sequential pipeline:
+The first stage extends the OWASP ODTM DFD metamodel with additional information required for multi-step attack detection.
+
 
 </p>
 
-- 📌 <b>Input Data (DFD / System Description)</b>  
-  → DataFlow Diagram(DFD), Attack Mode, Target Asset
-  → (Figure: left-most input block)
+📌 DataFlow Order
+Represents the sequence of data transfers.
+📌 Process Function Type
+Represents the semantic role of a process.
+Examples:
+Read
+Write
+Flash Loan
+Asset Exchange
+Price Oracle
 
-- 📌 <b>Rule-Based Attack Engine</b>  
-  → Constructs structured attack paths using:
-  - Integrated Attack Library (MITRE ATT&CK, CVE, CWE, domain KBs)
-  - Asset & attack-step dependency model  
-  - Unified Kill Chain (UKC) phase structuring  
-  → (Figure: upper-middle “Rule Engine” block which is composed of 'Attack Scenario' and 'Risk Value Determination' block)
+→ Output: Extended DFD Metamodel
 
-- 📌 <b>Risk Assessment Module</b>  
-  → Evaluates attack paths using:
-  - Feasibility (attack vector: network/local/physical/etc.)
-  - Impact (SFOP + asset criticality)  
-  → (Figure: branch under rule engine → “Risk Matrix”)
 
 ---
 
-### 🤖 2. LLM-Guided Threat Refinement Layer
+### 🧩 2. Multi-Step Threat Pattern Definition Layer
 
 <p align="justify">
-
-The system-level outputs are not final results. They are used as grounded constraints for LLM-based refinement.
-
+Real-world attack cases, vulnerability databases, and threat intelligence sources are analysed to derive reusable attack patterns.
 </p>
 
-- 📌 <b>Generator Agent</b>  
-  → Expands system-level paths into function-level attack scenarios  
-  → Injects vulnerability context (CWE / CVE / EMB3D mapping)  
-  → (Figure: LLM block – “Generator”)
-  
-- 📌 <b>Reviewer Agent</b>  
-  → Converts structured attack paths into natural-language reasoning  
-  → Validates logical consistency against attack knowledge base  
-  → (Figure: LLM block – “Reviewer”)
+📌 MITRE ATT&CK
+📌 Real-world attack incidents Post-Mortem Report
+
+→ Output: JSON-based Multi-Step Threat Patterns
   
 ---
 
-### 📊 3. Output 
+### 🔍 3. Attack Path Identification Layer 
 
 <p align="justify">
-
-The final output is a structured threat report that includes:
+The attack identification engine traverses the DFD graph while enforcing order constraints and function-type matching rules.
 
 </p>
 
-- 🧩 Function-level attack scenarios
-- 🧩 System-level validated attack graph
-- 🧩 Risk scores (feasibility × impact)
-- 🧩 Asset-level vulnerability mapping
+📌 Starting Node Identification
+📌 Ordered Graph Traversal
+📌 Sequence Verification
+📌 Threat Pattern Matching
 
-→ (Figure: bottom/right output block)
+→ Output: Attack Path in DFD
 
 ---
 
-### 🎯 Key Insight of the Architecture
+### 📊 4. Report Generation Layer
 
 <p align="justify">
 
-ThreatCraft is not a pure LLM system nor a pure rule engine. Instead, it is a <b>two-stage constrained generation framework</b> where:
+Detected attack paths are automatically transformed into threat analysis reports.
 </p>
 
-- Rule-based reasoning defines the “what is possible”
-- LLM defines the “how it actually happens”
-- Knowledge base grounding ensures “real-world feasibility”
+📌 Multi-Step Threat Report
+📌 HTML Output
+📌 Attack Path Summary
+
+→ Output: Threat Analysis Report
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
