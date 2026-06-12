@@ -63,7 +63,14 @@
 
 <p align="justify">
 
-ThreatCraft is an automated attack scenario generation framework that combines a rule-based attack reasoning engine with LLM-based scenario generation. It is designed to address two key limitations of existing approaches: (i) rule-based systems rely on extensive manual rule engineering, and (ii) LLM-based approaches may generate hallucinated or structurally invalid attack scenarios.
+As software systems grow in complexity, cyberattacks are increasingly exploiting **combinations of multiple vulnerabilities** rather than a single weakness. Existing threat modeling tools often focus only on individual components, making it difficult to detect **chained, multi-step attacks** that depend on execution order.
+
+**pytm-Seq** is an extended version of [OWASP pytm](https://github.com/OWASP/pytm) that introduces:
+- **Sequence-labeled Data Flow Diagrams (DFDs)**  
+- **Function type attributes for processes**  
+- A **pattern-matching algorithm** for multi-step attack detection  
+
+With these extensions, pytm-Seq can automatically detect attacks that exploit specific **execution orders** and **functional interactions** between system components.
 
 </p>
 
