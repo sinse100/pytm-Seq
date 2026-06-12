@@ -179,157 +179,47 @@ eport_case_study.html │ └── attack_path.json │ └── Dockerfile
 <h2 id="installation"> :gear: Installation</h2>
 
 <p align="justify">
-  Follow the steps below to set up and run <b>ThreatCraft</b> in your local environment.
+  We highly recommend using the provided Docker setup for a consistent and isolated environment, ensuring all dependencies are correctly managed.
 </p>
 
-<ol>
-  <li>
-    <b>Install Graphviz</b><br/>
-    Download and install Graphviz from the official site:<br/>
-    https://graphviz.org/download/<br/><br/>
-    After installation, make sure to add Graphviz to your system <b>PATH</b> (required for rendering attack graphs).
-  </li>
-
-  <li>
-    <b>Install Python dependencies</b><br/>
-    Run the following command in your project environment:
-    <pre><code>pip install graphviz pillow</code></pre>
-  </li>
-
-  <li>
-    <b>Verify backend prerequisites</b><br/>
-    Ensure Python version is <b>3.10+</b> and Graphviz is accessible from the terminal:
-    <pre><code>dot -V</code></pre>
-  </li>
-
-  <li>
-    <b>Run ThreatCraft</b><br/>
-    Navigate to the frontend directory and execute:
-    <pre><code>cd code/frontend
-python tool_attack_paths.py</code></pre>
-  </li>
-</ol>
-
-<p align="justify">
-  Once executed successfully, the system will launch the ThreatCraft and the GUI will be displayed on your screen.
-</p>
+### Using Docker (Recommended for Isolated Testing)
++ 1. Build the Docker image
+     ```docker build --no-cache -t new_pytm:0.0 .```
++ 2. Run the container
+     ```docker run -it --name pytm-test new_pytm:0.0```
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
 <!-- OVERVIEW -->
 <h2 id="usage-example"> :rocket: Usage Example</h2>
 
-### 🎯 Scenario Definition: Remote Attack on Vehicle Door System
+The core functionality of multi-step attack detection is controlled by a single parameter in the primary processing function.
 
-We assume an attacker attempting to remotely compromise a vehicle door control system.
+The mode parameter on the TM object's process call indicates whether to enable the multi-step detection engine.
 
-- **Target Asset**: `Door`
-- **Trust Boundary**: `External Vehicle Boundary`
-- **Attack Mode**: `Remote`
-<img src="asset/20260211_172126.png" alt="DFD" width="100%">
++ 1. Defining the System Model and Execution (sample_dfd.py) : Define your system's DFD in a Python file. Ensure to use the order and function_type attributes for data flows and processes that define sequence and function type, respectively.
+  
+```
+from pytm.pytm import TM
+# Initialize the Threat Model object
+tm = TM("my test tm")
+## ... (DFD Declaration Code here)
+## Example: process.function_type = "Write", data_flow.order = 1
+# Start Threat and Multi-step Threat Identification
+# Setting mode=1 activates the multi-step attack detection engine.
+tm.process(mode=1)
+```
 
----
-### **0. Select The Target Domain To Be Analysed**
++ 2. After writing your DFD code (e.g., in sample_dfd.py), execute the following commands in your bash environment to generate the outputs. Generate Multi-step Threat Identification Report (tm_report.html)
 
-Select the target domain for the system under analysis. In this tutorial, the attack scenario targets a vehicle, so choose the Automotive Vehicle domain.
+This command executes the DFD code, generates the report, and converts the markdown output to a final HTML document.
 
-<img src="asset/20260508_130606.png" alt="DFD" width="100%">
+```./sample_dfd.py --report docs/basic_template.md | pandoc -f markdown -t html > tm/tm_report.html```
 
----
+ This command generates the DFD in dot format and uses the dot tool (Graphviz) to convert it into a static PNG image.
 
-### **1. Launch ThreatCraft & Configure Analysis Context**
+```./sample_dfd.py --dfd | dot -Tpng -o sample_dfd.png```
 
-After starting the application, the GUI dashboard is displayed.
-
-Configure the analysis environment as follows:
-
-- 📂 **DFD File Selection**  
-  Load the target system model (`TM7 file`) representing the vehicle architecture.
-
-- 🧠 **LLM Configuration**  
-  - Select LLM backend (e.g., GPT-based model)
-  - Input valid API key
-
-- 🎯 **Target Definition**
-  - Select **Target Asset**: `Door`
-
-- 🌐 **Trust Boundary Selection**
-  - Define system boundary: `External Vehicle Boundary`
-
-- ⚔️ **Attack Mode**
-  - Set attacker capability: `Remote`
-
-- ▶️ Click **`Run Analysis`**
-
-> 📌 Note: All required threat intelligence libraries (CVE/CWE/EMB3D mappings, dependency graphs, risk models) are preloaded via *Library File Settings* by default.
-
-<img src="asset/20260502_180259.png" alt="DFD" width="100%">
-
----
-
-### **2. Configure Implementation Detail of Assets**
-
-Next, we define the implementation details for each asset. 
-
-For instance, as shown in the figure below a TCU may run a Linux operating system with multiple implementation characteristics:
-- loadable kernel modules (PID-23L1) and
-- Linux namespace isolation (PID-23L2). 
-
-After adding the implementation details to the assets, click “OK”.
-
-> 📌 Note: It is not mandatory to provide implementation details for all assets.
- 
-<img src="asset/20260502_181157.png" alt="config" width="100%">
-
----
-
-### **3. Check the Analysis Result**
-
-The result window consists of three tabs:
-
----
-
-#### **1) Asset Mapping**
-Each CWE threat is mapped to a specific asset. Note that CWE entries for an asset are not provided by default; they become available only after defining the asset’s implementation details, as described in Subsection 2 (“Configure Implementation Details of Assets”).
-
-<img src="asset/20260502_183945.png" alt="analysis_result1" width="100%">
-
----
-
-#### **2) Attack Paths**
-Each identified attack path is summarised. Each path represents a unique combination of assets and threats.
-
-<img src="asset/20260502_181549.png" alt="analysis_result2" width="100%">
-
----
-
-#### **3) AI Analysis**
-The AI analysis is divided into two levels:
-
----
-
-##### **Vehicle-Level Review**
-For each attack path, the tool assesses its likelihood (confidence level) and provides mitigation recommendations. Furthermore, it performs a comprehensive evaluation across all attack paths to identify and present the highest-risk path.
-
-<img src="asset/20260502_185712.png" alt="analysis_result3" width="100%">
-
----
-
-##### **Functional-Level Review**
-The tool evaluates the most critical vulnerabilities within each asset in the aggregated attack tree from an SFOP (Safety, Financial, Operational, Privacy) perspective, and presents the results for each asset-specific vulnerability accordingly.
-
-<img src="asset/20260502_185751.png" alt="analysis_result4" width="100%">
-
-
-> 📌 Note: You could save its results into JSON, CSV respectively, and also, you can check this whole results displayed in TARA Report(check ```example/_ag_tmp_184849195185.html```)
-
-<img src="asset/20260502_192452.png" alt="analysis_result4" width="100%">
-<img src="asset/20260502_192500.png" alt="analysis_result4" width="100%">
-<img src="asset/20260502_192514.png" alt="analysis_result4" width="100%">
-<img src="asset/20260502_192521.png" alt="analysis_result4" width="100%">
-<img src="asset/20260502_192527.png" alt="analysis_result4" width="100%">
-<img src="asset/20260502_192533.png" alt="analysis_result4" width="100%">
-<img src="asset/20260502_192541.png" alt="analysis_result4" width="100%">
   
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
 
