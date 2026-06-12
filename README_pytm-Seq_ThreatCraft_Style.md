@@ -56,7 +56,7 @@
 <!-- OVERVIEW -->
 <h2 id="overview"> :compass: Overview</h2>
 
-<img src="asset/WorkFlow-1.png">
+<img src="assets/overview.png">
 
 <!--  -->
 
