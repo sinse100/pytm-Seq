@@ -48,6 +48,7 @@
     <li><a href="#project-files-description"> ➤ Project Files Description</a></li>
     <li><a href="#installation"> ➤ Installation</a></li>
     <li><a href="#usage-example"> ➤ Usage Example </a></li>
+    <li><a href="#ackknoelwdgement"> ➤ Ackknowledgement </a></li>
   </ol>
 </details>
 
@@ -222,4 +223,18 @@ This command executes the DFD code, generates the report, and converts the markd
 
   
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+
+<h2 id="ackknowledgement"> 👏 Acknowledgements</h2>
+
+📄 Publication
+Pytm-Seq is a tool that implements the methodology proposed in the following paper, which was presented at **ICISC'2025** (Information Security and Cryptology):
+
+[Revealing the Chain with pytm-Seq: Approach for Multi-step Threat Detection](https://link.springer.com/chapter/10.1007/978-981-95-8034-7_14](https://doi.org/10.1007/978-981-95-8034-7_14)
+Baek, Geunwoo, Jiwon Kwak, and Seungjoo Kim.
+International Conference on Information Security and Cryptology. Singapore: Springer Nature Singapore, 2025.
+
+
+Bridging Two TARAs: Integrating MITRE CTSA/CRRA Prioritization into ISO/SAE 21434 for Automotive Security
+Minhyuk Park, Yejun Kim, and Seungjoo Kim
+VehicleSec'26, August 10-11, 2026, Baltimore, MD, USA
 
