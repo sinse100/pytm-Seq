@@ -27,9 +27,9 @@
 <br>
 <h3 align="center">##Demo Video</h3>
 <p align="center">
-  <a href="https://youtu.be/nrIHEKDLp2E">
-    <img src="https://img.youtube.com/vi/nrIHEKDLp2E/maxresdefault.jpg" 
-         alt="ThreatCraft Demo Video" 
+  <a href="">
+    <img src="" 
+         alt="" 
          width="700">
   </a>
 </p>
